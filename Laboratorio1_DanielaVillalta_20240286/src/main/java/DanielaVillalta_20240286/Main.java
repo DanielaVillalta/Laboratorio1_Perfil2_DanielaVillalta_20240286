@@ -10,6 +10,7 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     //ID     cantidad
     static TreeMap<Integer, Integer> productos = new TreeMap<>();
+    static int productoid = 10;
 
 
     public static void main(String[] args) {
@@ -28,28 +29,44 @@ public class Main {
 
         do {
             System.out.println("\nElija una opción:");
-            System.out.println("1 - Actualizar stock de un producto.");
-            System.out.println("2 - Mostrar lista de productos con stock bajo.");
-            System.out.println("3 - Motrar lista de productos.");
-            System.out.println("4 - Salir");
+            System.out.println("1 - Agregar un producto.");
+            System.out.println("2 - Actualizar stock de un producto.");
+            System.out.println("3 - Mostrar lista de productos con stock bajo.");
+            System.out.println("4 - Motrar lista de productos.");
+            System.out.println("5 - Salir");
             opcion = sc.nextInt();
 
             switch (opcion) {
                 case 1:
-                    actualizarStock();
+                    productoid++;
+                    agregarProducto();
                     break;
                 case 2:
-                    alertarStockBajo();
+                    actualizarStock();
                     break;
                 case 3:
-                    mostrarProductos();
+                    alertarStockBajo();
                     break;
                 case 4:
+                    mostrarProductos();
+                    break;
+                case 5:
                     System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("La opción no es válida.");
                     break;
             }
 
-        } while (opcion < 4 && opcion > 0);
+        } while (opcion < 5 && opcion > 0);
+    }
+
+    public static void agregarProducto() {
+        int stock = 0;
+        System.out.println("Ingrese el stock del nuevo producto:");
+        stock = sc.nextInt();
+        productos.put(productoid, stock);
+        System.out.println("Producto agregado, el ID se genera automáticamente.");
     }
 
     public static void actualizarStock() {
